@@ -1,0 +1,1208 @@
+<style>.route{display:none}.route.active{display:block}</style>
+{{ 'servizi.css' | asset_url | stylesheet_tag }}
+{{ 'piani.css' | asset_url | stylesheet_tag }}
+{{ 'chi-sono.css' | asset_url | stylesheet_tag }}
+{{ 'booking.css' | asset_url | stylesheet_tag }}
+{{ 'checkout.css' | asset_url | stylesheet_tag }}
+{{ 'conferma.css' | asset_url | stylesheet_tag }}
+{{ 'ebook.css' | asset_url | stylesheet_tag }}
+{{ 'citta-request.css' | asset_url | stylesheet_tag }}
+<div class="route" data-route="home">
+<!-- ───────────────── NAV (hidden during hero) ───────────────── -->
+<nav class="nav hidden" id="nav">
+  <div class="wrap flex items-center justify-between">
+    <a class="wordmark" href="#top" aria-label="Maria La Chinesiologa">
+      <img src="{{ 'logo-navy.png' | asset_url }}" alt="Maria La Chinesiologa" />
+    </a>
+    <div class="nav-links">
+      <a href="#servizi" class="active">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-ico nav-ico--account" aria-label="Accedi" title="Accedi"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/></svg></a>
+      <a href="{{ routes.cart_url }}" class="nav-ico nav-cart" aria-label="Carrello" title="Carrello"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h11l-.9 10.2a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9L6.5 8.5z"/><path d="M9.3 8.5V6.8a2.7 2.7 0 0 1 5.4 0v1.7"/></svg><span class="nav-cart__count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span></a>
+      <a href="#booking" class="btn-gold sm">Prenota →</a>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile">
+    <div class="wrap">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-mobile__acc">Accedi al profilo</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+<!-- ───────────────── ACT 1 · HERO (cinematic) ───────────────── -->
+<section class="hero is-dark" id="hero">
+  <div class="hero-sticky" id="heroSticky">
+    <div class="hero-grain"></div>
+    <div class="hero-orb" id="heroOrb"></div>
+
+    <div class="hero-sil" id="heroSil"><img src="{{ 'g09.svg' | asset_url }}" alt="Silhouette femminile" /></div>
+
+    <!-- headline (first) -->
+    <div class="hero-h"><div class="wrap"><h1 id="heroHeadline">
+      <span class="w" data-s="0.50" data-e="0.55">Ascolta</span>
+      <span class="w" data-s="0.51" data-e="0.56">il</span>
+      <span class="w" data-s="0.52" data-e="0.57">tuo</span><br>
+      <span class="w accent" data-s="0.54" data-e="0.60">corpo</span><span class="w tight" data-s="0.55" data-e="0.60">,</span>
+      <span class="w" data-s="0.56" data-e="0.61">agisci</span><br>
+      <span class="w" data-s="0.58" data-e="0.63">con</span>
+      <span class="w accent" data-s="0.60" data-e="0.65">cura</span><span class="w tight" data-s="0.62" data-e="0.66">.</span>
+    </h1></div></div>
+
+    <!-- greeting (after headline) -->
+    <div class="hero-greet" id="heroGreet"><div class="wrap"><div class="script">{{ section.settings.hero_greet | default: 'ciao, sono Maria —' }}</div></div></div>
+
+    <!-- subhead -->
+    <div class="hero-sub" id="heroSub"><div class="wrap"><p>{{ section.settings.hero_sub | default: 'Per chi non vuole un programma generico — ma <span class="hl">il suo</span>.' }}</p></div></div>
+
+    <!-- proposal + CTA -->
+    <div class="hero-cta" id="heroCta"><div class="wrap">
+      <div class="kicker">{{ section.settings.hero_kicker | default: 'Iniziamo da qui ↓' }}</div>
+      <div class="row">
+        <a href="{{ section.settings.hero_cta_link | default: '#booking' }}" class="btn-gold">{{ section.settings.hero_cta_text | default: 'Prenota la valutazione funzionale →' }}</a>
+        <span class="note">{{ section.settings.hero_cta_note | default: '60 min online · 45 in studio. Il primo passo per capire da dove partire.' }}</span>
+      </div>
+    </div></div>
+
+    <div class="hero-cue" id="heroCue"><span class="hero-cue__label">Scorri per scoprire</span><span class="hero-cue__chevs" aria-hidden="true"><i></i><i></i></span></div>
+  </div>
+</section>
+
+<!-- ───────────────── ACT 3 · NUMBERS ───────────────── -->
+<section class="numbers">
+  <img class="decor a" src="{{ 'g04.svg' | asset_url }}" alt="" />
+  <img class="decor b" src="{{ 'g13.svg' | asset_url }}" alt="" />
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;margin-bottom:12px"><span class="dot"></span>Numeri</div>
+    <h2 class="h-display">Tredici anni di <span class="it" style="color:var(--accent)">movimento</span>.</h2>
+    <div class="numbers__grid">
+      <div class="numbers__cell"><div class="numbers__big"><span class="count" data-to="300" data-suffix="+">0</span></div><div class="numbers__lbl">persone seguite</div><div class="numbers__det">in tutta Italia</div></div>
+      <div class="numbers__cell"><div class="numbers__big"><span class="count" data-to="13">0</span></div><div class="numbers__lbl">anni di pratica</div><div class="numbers__det">dal 2013</div></div>
+      <div class="numbers__cell"><div class="numbers__big"><span class="count" data-to="4">0</span></div><div class="numbers__lbl">città italiane</div><div class="numbers__det">più online</div></div>
+      <div class="numbers__cell"><div class="numbers__big"><span class="count" data-to="1">0</span></div><div class="numbers__lbl">obiettivo</div><div class="numbers__det">il tuo</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── ACT 4 · CITIES ───────────────── -->
+<section class="cities" id="cities">
+  <div class="cities__glow"></div>
+  <div class="wrap">
+    <div class="cities__grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Ovunque tu sia</div>
+        <h2 class="h-display">In <span class="it">presenza</span>,<br>o ovunque.</h2>
+        <p class="cities__intro">Quattro città italiane, una agenda mensile. Per il resto, ci vediamo online — stessa cura, stessa profondità.</p>
+        <a href="#booking" class="btn-outline-gold">Trova il tuo slot →</a>
+        <p class="cities__more">La tua città non c'è? <button class="cities__more-btn" type="button" data-citta-request>Candida la tua provincia →</button></p>
+      </div>
+      <div class="cities__list" id="cityList" data-dynamic>
+        <!-- Riempita da cities-hydrate.js leggendo /api/locations (solo sedi active) -->
+        <noscript>
+          <button class="city-row" data-citta-request="Padova (PD)"><div><div class="name">Padova</div><div class="meta">PD · Veneto</div></div><div class="note">Richiedi una data →</div></button>
+          <button class="city-row" data-citta-request="Bologna (BO)"><div><div class="name">Bologna</div><div class="meta">BO · Emilia-Romagna</div></div><div class="note">Richiedi una data →</div></button>
+          <button class="city-row" data-citta-request="Milano (MI)"><div><div class="name">Milano</div><div class="meta">MI · Lombardia</div></div><div class="note">Richiedi una data →</div></button>
+          <button class="city-row" data-citta-request="Torino (TO)"><div><div class="name">Torino</div><div class="meta">TO · Piemonte</div></div><div class="note">Richiedi una data →</div></button>
+          <button class="city-row"><div><div class="name">Online</div><div class="meta">Ovunque tu sia</div></div><div class="note">Videochiamata · sempre</div></button>
+        </noscript>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── ACT 5 · METHOD ───────────────── -->
+<section class="method" id="method">
+  <img class="leaf" src="{{ 'g03.svg' | asset_url }}" alt="" />
+  <div class="wrap">
+    <div class="method__head">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Metodo</div>
+        <h2 class="h-display">Quattro <span class="it" style="color:var(--accent)">tempi</span>.<br>Un solo metodo.</h2>
+      </div>
+      <p class="sub">Niente trucchi, nessuna scorciatoia. Un processo trasparente che parte dall'ascolto e arriva al cambiamento.</p>
+    </div>
+    <div class="method__grid">
+      <article class="mcard"><img class="mcard__decor" src="{{ 'g06.svg' | asset_url }}" alt="" /><div class="mcard__top"><span class="mcard__n">— 01</span><img class="mcard__icon" src="{{ 'i18.svg' | asset_url }}" alt="" /></div><h3>Ascolto</h3><p>Ogni corpo è una storia. Parto dalla tua: abitudini, allenamenti passati, obiettivi veri.</p></article>
+      <article class="mcard"><img class="mcard__decor" src="{{ 'g05.svg' | asset_url }}" alt="" /><div class="mcard__top"><span class="mcard__n">— 02</span><img class="mcard__icon" src="{{ 'i20.svg' | asset_url }}" alt="" /></div><h3>Valutazione</h3><p>Test posturali, mobilità, forza. Online o in studio, per mappare con precisione il punto di partenza.</p></article>
+      <article class="mcard"><img class="mcard__decor" src="{{ 'g12.svg' | asset_url }}" alt="" /><div class="mcard__top"><span class="mcard__n">— 03</span><img class="mcard__icon" src="{{ 'i17.svg' | asset_url }}" alt="" /></div><h3>Piano su misura</h3><p>Un programma cucito addosso a te. Video HD, app dedicata, schede settimanali — niente di generico.</p></article>
+      <article class="mcard"><img class="mcard__decor" src="{{ 'g14.svg' | asset_url }}" alt="" /><div class="mcard__top"><span class="mcard__n">— 04</span><img class="mcard__icon" src="{{ 'i16.svg' | asset_url }}" alt="" /></div><h3>Accompagnamento</h3><p>Revisione mensile, chat diretta, adattamenti. Non un programma da seguire — un percorso da fare insieme.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── ACT 6 · PHILOSOPHY QUOTE ───────────────── -->
+<section class="qscene" id="quote">
+  <img class="qscene__sil" src="{{ 'g10.svg' | asset_url }}" alt="" />
+  <div class="wrap">
+    <div class="script">la mia filosofia</div>
+    <blockquote>La <span class="it">consapevolezza</span> è il primo passo del <span class="it">cambiamento</span>.</blockquote>
+    <div class="by">Maria · Chinesiologa</div>
+  </div>
+</section>
+
+<!-- ───────────────── ACT 7 · APP SHOWCASE ───────────────── -->
+<section class="section app" id="app">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>{{ section.settings.app_overline | default: 'App' }}</div>
+      <h2 class="h-1">{{ section.settings.app_h2 | default: 'La tua palestra<br><span class="it">in tasca</span>.' }}</h2>
+      <p class="lead">{{ section.settings.app_body | default: "Quando attivi un piano ricevi l'app dedicata: video degli esercizi, calendario, log dei progressi e contatto diretto con me." }}</p>
+      <ul>
+        <li><span></span>{{ section.settings.app_bullet_1 | default: 'Video HD per ogni esercizio' }}</li>
+        <li><span></span>{{ section.settings.app_bullet_2 | default: 'Notifiche promemoria personalizzabili' }}</li>
+        <li><span></span>{{ section.settings.app_bullet_3 | default: 'Chat diretta con Maria' }}</li>
+        <li><span></span>{{ section.settings.app_bullet_4 | default: 'Dashboard progressi settimanali' }}</li>
+      </ul>
+      <div class="stores">
+        <a class="store" href="{{ section.settings.app_appstore_url | default: 'https://apps.apple.com/it/app/maria-la-chinesiologa/id6739415935' }}" target="_blank" rel="noopener"><div class="mono">Disponibile su</div><b>App Store</b></a>
+        <a class="store" href="{{ section.settings.app_playstore_url | default: 'https://play.google.com/store/apps/details?id=com.revoo.marialachinesiologa' }}" target="_blank" rel="noopener"><div class="mono">Disponibile su</div><b>Google Play</b></a>
+      </div>
+    </div>
+    <div class="app__phones">
+      <div class="app__phone app__phone--1" id="phone1">
+        {%- if section.settings.app_phone1 != blank -%}
+          {{ section.settings.app_phone1 | image_url: width: 800 | image_tag: alt: 'App — Schermata Allenamento', loading: 'lazy', widths: '300,600,800,1200' }}
+        {%- else -%}
+          <img src="{{ 'schermata-allenamento.svg' | asset_url }}" alt="App — Schermata Allenamento">
+        {%- endif -%}
+      </div>
+      <div class="app__phone app__phone--2" id="phone2">
+        {%- if section.settings.app_phone2 != blank -%}
+          {{ section.settings.app_phone2 | image_url: width: 800 | image_tag: alt: 'Progress Tracker', loading: 'lazy', widths: '300,600,800' }}
+        {%- else -%}
+          <img src="{{ 'progress-tracker.svg' | asset_url }}" alt="Progress Tracker">
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── ACT 8 · TESTIMONIALS ───────────────── -->
+<section class="section">
+  <div class="wrap">
+    <div class="tst-head"><h2 class="h-1">Cosa dicono di me.</h2><div class="mono" style="color:var(--ink-soft)">04 — Testimonianze</div></div>
+    <div class="tst-grid">
+      <article class="tst reveal"><div class="mark serif">"</div><p class="text">Maria ha cambiato il modo in cui mi muovo. La valutazione è stata illuminante: ho capito perché avevo dolore al ginocchio.</p><div class="by"><span>Sara C.</span><span>Torino</span></div></article>
+      <article class="tst reveal" style="transition-delay:120ms"><div class="mark serif">"</div><p class="text">In tre mesi ho recuperato mobilità che pensavo di aver perso per sempre. L'app è comodissima.</p><div class="by"><span>Luca M.</span><span>Milano</span></div></article>
+      <article class="tst reveal" style="transition-delay:240ms"><div class="mark serif">"</div><p class="text">La sessione online sembrava di essere in studio. Approccio professionale, gentile, ma molto preparato.</p><div class="by"><span>Giulia R.</span><span>Online</span></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── ACT 9 · FAQ ───────────────── -->
+<section class="section faq" id="faq">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>05 — FAQ</div>
+      <h2 class="h-1">Domande<br><span class="it">frequenti</span>.</h2>
+    </div>
+    <div id="faqList">
+      <div class="faq__item open"><button class="faq__q"><span class="qt serif">Come funziona la valutazione online?</span><span class="pm">+</span></button><div class="faq__a">Riceverai un link per una videocall di 60 minuti, durante la quale faremo anamnesi, alcuni test posturali guidati e definiremo insieme gli obiettivi.</div></div>
+      <div class="faq__item"><button class="faq__q"><span class="qt serif">Quanto dura un piano di allenamento?</span><span class="pm">+</span></button><div class="faq__a">I piani partono da 4 settimane fino a 6 mesi, con revisione mensile per adattarli ai tuoi progressi.</div></div>
+      <div class="faq__item"><button class="faq__q"><span class="qt serif">Devo avere attrezzatura specifica?</span><span class="pm">+</span></button><div class="faq__a">No. Adattiamo gli esercizi a casa, in palestra o in viaggio. Bastano un tappetino e poco spazio.</div></div>
+      <div class="faq__item"><button class="faq__q"><span class="qt serif">Posso disdire o riprogrammare?</span><span class="pm">+</span></button><div class="faq__a">Sì, fino a 24h prima dell'appuntamento senza alcun costo.</div></div>
+      <div class="faq__item"><button class="faq__q"><span class="qt serif">È adatto a chi parte da zero?</span><span class="pm">+</span></button><div class="faq__a">Assolutamente sì. La maggior parte dei miei clienti non si è mai allenata in modo strutturato.</div></div>
+      <div class="faq__end"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── ACT 10 · FINAL CTA ───────────────── -->
+<section class="final" id="final">
+  <div class="wrap reveal">
+    <div class="script">inizia oggi</div>
+    <h2 class="h-display">Il tuo corpo<br><span class="it" style="color:var(--accent)">ti sta aspettando</span>.</h2>
+    <a href="#booking" class="btn-gold" style="padding:24px 40px">Prenota la tua valutazione →</a>
+  </div>
+</section>
+
+<!-- ───────────────── FOOTER ───────────────── -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <span class="wordmark"><img src="{{ 'logo-white.png' | asset_url }}" alt="Maria La Chinesiologa" style="height:60px;width:auto" /></span>
+        <p>Valutazioni funzionali e piani di allenamento personalizzati. Padova, Bologna, Milano, Torino + online.</p>
+      </div>
+      <div class="foot__col"><div class="mono">Servizi</div><ul><li><a href="#booking">Valutazione Funzionale</a></li><li><a href="#piani">Piani di Allenamento</a></li><li><a href="#ebook">eBook</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Studio</div><ul><li><a href="#chi-sono">Chi sono</a></li><li><a href="#servizi">Metodo</a></li><li><a href="https://app.marialachinesiologa.com/faq.html">FAQ</a></li><li><a href="https://app.marialachinesiologa.com/contatti.html">Contatti</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Legale</div><ul><li><a href="https://app.marialachinesiologa.com/privacy.html">Privacy</a></li><li><a href="https://app.marialachinesiologa.com/cookie.html">Cookie</a></li><li><a href="https://app.marialachinesiologa.com/termini.html">Termini &amp; Rimborsi</a></li></ul></div>
+    </div>
+    <div class="foot__bar"><span>© 2026 Maria La Chinesiologa</span></div>
+  </div>
+</footer>
+
+</main>
+</div>
+<div class="route" data-route="servizi">
+<nav class="nav scrolled">
+  <div class="wrap flex items-center justify-between">
+    <a class="wordmark" href="#home" aria-label="Maria La Chinesiologa">
+      <img src="{{ 'logo-navy.png' | asset_url }}" alt="Maria La Chinesiologa" />
+    </a>
+    <div class="nav-links">
+      <a href="#servizi" class="active">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-ico nav-ico--account" aria-label="Accedi" title="Accedi"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/></svg></a>
+      <a href="{{ routes.cart_url }}" class="nav-ico nav-cart" aria-label="Carrello" title="Carrello"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h11l-.9 10.2a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9L6.5 8.5z"/><path d="M9.3 8.5V6.8a2.7 2.7 0 0 1 5.4 0v1.7"/></svg><span class="nav-cart__count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span></a>
+      <a href="#booking" class="btn-gold sm">Prenota →</a>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile">
+    <div class="wrap">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-mobile__acc">Accedi al profilo</a>
+    </div>
+  </div>
+</nav>
+
+<main class="pg">
+  <section class="pg-head">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot"></span>Servizi</div>
+      <h1 class="h-display">Cosa <span class="it">faccio</span>.</h1>
+      <p class="lead" style="max-width:52ch">Due servizi complementari. Inizia con la valutazione per capire da dove parti, poi continuiamo con un piano d'allenamento se sei pronta a metterti in gioco.</p>
+    </div>
+  </section>
+
+  <!-- Servizio 01 -->
+  <section class="sv-detail right">
+    <div class="wrap inner">
+      <div class="sv-text reveal">
+        <div class="sv-num">— 01</div>
+        <h2 class="h-1">Valutazione Funzionale.</h2>
+        <p class="lead">Una sessione completa per mappare il tuo corpo e definire gli obiettivi.</p>
+        <div class="sv-lbl">Include</div>
+        <ul class="sv-incl">
+          <li><i></i>Anamnesi e raccolta delle abitudini</li>
+          <li><i></i>Test posturali e di mobilità</li>
+          <li><i></i>Valutazione della forza e dell'equilibrio</li>
+          <li><i></i>Identificazione di compensi e limitazioni</li>
+          <li><i></i>Piano d'azione personalizzato</li>
+          <li><i></i>Report scritto inviato entro 48h</li>
+        </ul>
+        <div class="sv-lbl">Modalità</div>
+        <div class="sv-modes">
+          <span>Online via videochiamata</span><span>In presenza · Padova</span><span>· Bologna</span><span>· Milano</span><span>· Torino</span>
+        </div>
+        <a href="#booking" class="btn-gold">Prenota la valutazione →</a>
+      </div>
+      <div class="sv-media">
+        <div class="ph" data-label="silhouette body scan" data-tone="accent"></div>
+        <div class="meta"><span>file · 01</span><span>45–60 min</span></div>
+        <div class="price">€80</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servizio 02 -->
+  <section class="sv-detail left paper">
+    <div class="wrap inner">
+      <div class="sv-media dark">
+        <div class="ph" data-label="dumbbell still life" data-tone="dark"></div>
+        <div class="meta"><span>file · 02</span><span>4 sett. → 6 mesi</span></div>
+        <div class="price">da €120</div>
+      </div>
+      <div class="sv-text reveal">
+        <div class="sv-num">— 02</div>
+        <h2 class="h-1">Piani di Allenamento.</h2>
+        <p class="lead">Programmi personalizzati con app dedicata e supporto continuo.</p>
+        <div class="sv-lbl">Include</div>
+        <ul class="sv-incl">
+          <li><i></i>Schede settimanali personalizzate</li>
+          <li><i></i>Video HD per ogni esercizio</li>
+          <li><i></i>App iOS e Android dedicata</li>
+          <li><i></i>Revisione mensile del piano</li>
+          <li><i></i>Chat diretta con Maria</li>
+          <li><i></i>Adattamento per casa / palestra</li>
+        </ul>
+        <div class="sv-lbl">Pacchetti</div>
+        <div class="sv-modes">
+          <span>Base · 4 settimane</span><span>Pro · 3 mesi</span><span>Premium · 6 mesi</span><span>eBook tematici</span>
+        </div>
+        <a href="#piani" class="btn-gold">Scopri i piani →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pilastri -->
+  <section class="section sv-pillars">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="h-1">Tre pilastri,<br><span class="it">un solo metodo</span>.</h2>
+        <div class="mono">03 — Pilastri</div>
+      </div>
+      <div class="grid">
+        <div class="cell reveal"><div class="rn">I.</div><h3 class="h-2">Ascolto</h3><p>Ogni corpo è diverso. Parto dalla tua storia, dalle tue abitudini, dai tuoi obiettivi reali.</p></div>
+        <div class="cell reveal" style="transition-delay:150ms"><div class="rn">II.</div><h3 class="h-2">Scienza</h3><p>Metodi evidence-based, test funzionali validati, monitoraggio dei progressi.</p></div>
+        <div class="cell reveal" style="transition-delay:300ms"><div class="rn">III.</div><h3 class="h-2">Costanza</h3><p>Allenarsi è un'abitudine. Ti accompagno con un metodo sostenibile nel tempo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <span class="wordmark"><img src="{{ 'logo-white.png' | asset_url }}" alt="Maria La Chinesiologa" style="height:60px;width:auto" /></span>
+        <p>Valutazioni funzionali e piani di allenamento personalizzati. Padova, Bologna, Milano, Torino + online.</p>
+      </div>
+      <div class="foot__col"><div class="mono">Servizi</div><ul><li><a href="#booking">Valutazione Funzionale</a></li><li><a href="#piani">Piani di Allenamento</a></li><li><a href="#ebook">eBook</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Studio</div><ul><li><a href="#chi-sono">Chi sono</a></li><li><a href="#servizi">Metodo</a></li><li><a href="https://app.marialachinesiologa.com/faq.html">FAQ</a></li><li><a href="https://app.marialachinesiologa.com/contatti.html">Contatti</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Legale</div><ul><li><a href="https://app.marialachinesiologa.com/privacy.html">Privacy</a></li><li><a href="https://app.marialachinesiologa.com/cookie.html">Cookie</a></li><li><a href="https://app.marialachinesiologa.com/termini.html">Termini &amp; Rimborsi</a></li></ul></div>
+    </div>
+    <div class="foot__bar"><span>© 2026 Maria La Chinesiologa</span></div>
+  </div>
+</footer>
+</main>
+</div>
+<div class="route" data-route="piani">
+<nav class="nav scrolled">
+  <div class="wrap flex items-center justify-between">
+    <a class="wordmark" href="#home" aria-label="Maria La Chinesiologa">
+      <img src="{{ 'logo-navy.png' | asset_url }}" alt="Maria La Chinesiologa" />
+    </a>
+    <div class="nav-links">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani" class="active">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-ico nav-ico--account" aria-label="Accedi" title="Accedi"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/></svg></a>
+      <a href="{{ routes.cart_url }}" class="nav-ico nav-cart" aria-label="Carrello" title="Carrello"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h11l-.9 10.2a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9L6.5 8.5z"/><path d="M9.3 8.5V6.8a2.7 2.7 0 0 1 5.4 0v1.7"/></svg><span class="nav-cart__count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span></a>
+      <a href="#booking" class="btn-gold sm">Prenota →</a>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile">
+    <div class="wrap">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-mobile__acc">Accedi al profilo</a>
+    </div>
+  </div>
+</nav>
+
+<main class="pg">
+  <section class="pg-head">
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot"></span>Piani</div>
+      <h1 class="h-display">Allenamento <span class="it" style="color:var(--accent)">su misura</span>.</h1>
+      <p class="lead" style="max-width:54ch">Un solo metodo, quattro durate: progressione sostenibile e personalizzata. Scegli quanto restare — io disegno il piano. App, chat e revisioni incluse.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="plans">
+        <article class="plan" data-buy data-label="Piano Allenamento — 2 mesi" data-price="250" data-href="/cart/51446223470858:1">
+          <div class="plan__top"><div class="plan__name">2 mesi</div><div class="plan__meta">€125 / mese</div></div>
+          <div class="plan__price"><sup>€</sup>250</div>
+          <p class="plan__tagline">Per iniziare con metodo e costanza.</p>
+          <div class="plan__cta"><b>Scegli 2 mesi</b><span class="ar">→</span></div>
+        </article>
+
+        <article class="plan" data-buy data-label="Piano Allenamento — 4 mesi" data-price="400" data-href="/cart/51446223503626:1">
+          <div class="plan__top"><div class="plan__name">4 mesi</div><div class="plan__meta">€100 / mese</div></div>
+          <div class="plan__price"><sup>€</sup>400</div>
+          <p class="plan__tagline">Entra nel ritmo e consolida i risultati.</p>
+          <div class="plan__cta"><b>Scegli 4 mesi</b><span class="ar">→</span></div>
+        </article>
+
+        <article class="plan hl" data-buy data-label="Piano Allenamento — 6 mesi" data-price="550" data-href="/cart/51446223536394:1">
+          <span class="plan__tag">Più scelto</span>
+          <div class="plan__top"><div class="plan__name">6 mesi</div><div class="plan__meta">€92 / mese</div></div>
+          <div class="plan__price"><sup>€</sup>550</div>
+          <p class="plan__tagline">Il percorso completo. Il preferito.</p>
+          <div class="plan__cta"><b>Scegli 6 mesi</b><span class="ar">→</span></div>
+        </article>
+
+        <article class="plan" data-buy data-label="Piano Allenamento — 12 mesi" data-price="997" data-href="/cart/51446223569162:1">
+          <span class="plan__tag" style="background:var(--navy);color:var(--gold)">Miglior prezzo</span>
+          <div class="plan__top"><div class="plan__name">12 mesi</div><div class="plan__meta">€83 / mese</div></div>
+          <div class="plan__price"><sup>€</sup>997</div>
+          <p class="plan__tagline">Un anno insieme, risultati che restano.</p>
+          <div class="plan__cta"><b>Scegli 12 mesi</b><span class="ar">→</span></div>
+        </article>
+      </div>
+
+      <div class="custom-cta reveal">
+        <div>
+          <div class="mono">— Su richiesta</div>
+          <h3 class="h-2">Hai un'esigenza diversa?</h3>
+          <p>Programmi su misura per atlete, post-parto, lipedema, riabilitazione post-operatoria. Parliamone in valutazione.</p>
+        </div>
+        <a href="#booking" class="btn btn-ghost">Prenota una chiamata →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cosa include -->
+  <section class="section" style="background:var(--paper)">
+    <div class="wrap">
+      <div class="flex justify-between" style="margin-bottom:60px">
+        <h2 class="h-1" style="max-width:14ch">Cosa include <span class="it">ogni piano</span>.</h2>
+        <div class="mono" style="color:var(--ink-soft)">02 — Sempre incluso</div>
+      </div>
+      <div class="incl-grid">
+        <div class="incl reveal"><div class="incl__n">01</div><h3>Scheda personalizzata</h3><p>Un programma costruito sui tuoi obiettivi, aggiornato man mano che progredisci.</p></div>
+        <div class="incl reveal"><div class="incl__n">02</div><h3>Video HD di ogni esercizio</h3><p>L’esecuzione corretta sempre con te, anche da casa.</p></div>
+        <div class="incl reveal"><div class="incl__n">03</div><h3>App dedicata</h3><p>iOS e Android: allenamenti, schede e progressi tutto in un posto.</p></div>
+        <div class="incl reveal"><div class="incl__n">04</div><h3>Chat diretta con Maria</h3><p>Domande, dubbi e aggiustamenti: ci sono io, passo dopo passo.</p></div>
+        <div class="incl reveal"><div class="incl__n">05</div><h3>Revisioni periodiche</h3><p>Il piano evolve con te — non resta mai fermo.</p></div>
+        <div class="incl reveal"><div class="incl__n">06</div><h3>Su misura per te</h3><p>Attenzione a lipedema, post-parto ed esigenze specifiche.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- eBook: ricette + alimentazione (anchor #ebook) — modificabile dall'editor Shopify -->
+  <section class="section ebook-home" id="ebook">
+    <div class="wrap">
+      <div class="flex justify-between" style="margin-bottom:60px;align-items:flex-end;flex-wrap:wrap;gap:24px">
+        <div>
+          <div class="mono" style="color:var(--ink-soft);margin-bottom:14px">{{ section.settings.ebook_overline | default: '03 — eBook' }}</div>
+          <h2 class="h-1" style="max-width:14ch">{{ section.settings.ebook_h2 | default: 'La <span class="it">cucina</span> che ti supporta.' }}</h2>
+          <p style="max-width:46ch;color:var(--ink-soft);margin-top:18px">{{ section.settings.ebook_body | default: 'Ricettari pensati per chi vuole stare meglio: low carb, anti-lipedema, colazioni equilibrate. Pratici, testati, scaricabili subito in PDF.' }}</p>
+        </div>
+      </div>
+
+      {%- assign ebook_blocks = section.blocks | where: 'type', 'ebook' -%}
+      <div class="ebook-grid">
+        {%- if ebook_blocks.size > 0 -%}
+          {%- for blk in ebook_blocks -%}
+            <a class="ebook-card reveal" href="{{ blk.settings.link | default: '/collections/ebook' }}" {{ blk.shopify_attributes }}>
+              <div class="ebook-card__cover">
+                {%- if blk.settings.cover != blank -%}
+                  {{ blk.settings.cover | image_url: width: 600 | image_tag: alt: blk.settings.title, loading: 'lazy', widths: '300,600' }}
+                {%- else -%}
+                  <img src="{{ 'freschi.jpg' | asset_url }}" alt="{{ blk.settings.title }}" loading="lazy">
+                {%- endif -%}
+              </div>
+              <div class="ebook-card__body">
+                {%- if blk.settings.tag != blank -%}<div class="ebook-card__tag mono">{{ blk.settings.tag }}</div>{%- endif -%}
+                <h3 class="ebook-card__t">{{ blk.settings.title | default: 'eBook' }}</h3>
+                <div class="ebook-card__price">
+                  <span class="now">{{ blk.settings.price | default: '€9,90' }}</span>
+                  {%- if blk.settings.price_was != blank -%}<span class="was">{{ blk.settings.price_was }}</span>{%- endif -%}
+                </div>
+              </div>
+            </a>
+          {%- endfor -%}
+        {%- else -%}
+          <a class="ebook-card reveal" href="/products/freschi-amici-del-lipedema">
+            <div class="ebook-card__cover"><img src="{{ 'freschi.jpg' | asset_url }}" alt="Freschi Amici del Lipedema" loading="lazy"></div>
+            <div class="ebook-card__body">
+              <div class="ebook-card__tag mono">Anti-lipedema</div>
+              <h3 class="ebook-card__t">Freschi Amici del Lipedema</h3>
+              <div class="ebook-card__price"><span class="now">€5,70</span> <span class="was">€9,90</span></div>
+            </div>
+          </a>
+          <a class="ebook-card reveal" href="/products/ebook-low-carb">
+            <div class="ebook-card__cover"><img src="{{ 'lowcarb.jpg' | asset_url }}" alt="Low Carb" loading="lazy"></div>
+            <div class="ebook-card__body">
+              <div class="ebook-card__tag mono">Ricettario</div>
+              <h3 class="ebook-card__t">Low Carb</h3>
+              <div class="ebook-card__price"><span class="now">€9,90</span></div>
+            </div>
+          </a>
+          <a class="ebook-card reveal" href="/products/e-book-low-carb-winter-edition">
+            <div class="ebook-card__cover"><img src="{{ 'lowcarbbase.jpg' | asset_url }}" alt="Low Carb Winter Edition" loading="lazy"></div>
+            <div class="ebook-card__body">
+              <div class="ebook-card__tag mono">Winter Edition</div>
+              <h3 class="ebook-card__t">Low Carb Winter</h3>
+              <div class="ebook-card__price"><span class="now">€19,90</span></div>
+            </div>
+          </a>
+          <a class="ebook-card reveal" href="/products/e-book-low-carb-winter-edition-copia">
+            <div class="ebook-card__cover"><img src="{{ 'colazioni.jpg' | asset_url }}" alt="Colazioni Low Carb" loading="lazy"></div>
+            <div class="ebook-card__body">
+              <div class="ebook-card__tag mono">Colazioni</div>
+              <h3 class="ebook-card__t">Colazioni Low Carb</h3>
+              <div class="ebook-card__price"><span class="now">€9,90</span></div>
+            </div>
+          </a>
+        {%- endif -%}
+      </div>
+
+      <div class="ebook-cta reveal" style="text-align:center;margin-top:48px">
+        <a href="{{ section.settings.ebook_cta_link | default: '/collections/ebook' }}" class="btn-ghost">{{ section.settings.ebook_cta_text | default: 'Sfoglia tutti gli eBook →' }}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ light CTA -->
+  <section class="section faq-light">
+    <div class="wrap reveal">
+      <div class="script">ancora dubbi?</div>
+      <h2 class="h-1">Prima di scegliere,<br><span class="it">conosciamoci</span>.</h2>
+      <p>La valutazione funzionale è il modo migliore per capire da che piano partire. Online (60 min) o in studio (45 min), €80 a persona.</p>
+      <a href="#booking" class="btn-gold">Prenota la valutazione →</a>
+    </div>
+  </section>
+
+  <footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <span class="wordmark"><img src="{{ 'logo-white.png' | asset_url }}" alt="Maria La Chinesiologa" style="height:60px;width:auto" /></span>
+        <p>Valutazioni funzionali e piani di allenamento personalizzati. Padova, Bologna, Milano, Torino + online.</p>
+      </div>
+      <div class="foot__col"><div class="mono">Servizi</div><ul><li><a href="#booking">Valutazione Funzionale</a></li><li><a href="#piani">Piani di Allenamento</a></li><li><a href="#ebook">eBook</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Studio</div><ul><li><a href="#chi-sono">Chi sono</a></li><li><a href="#servizi">Metodo</a></li><li><a href="https://app.marialachinesiologa.com/faq.html">FAQ</a></li><li><a href="https://app.marialachinesiologa.com/contatti.html">Contatti</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Legale</div><ul><li><a href="https://app.marialachinesiologa.com/privacy.html">Privacy</a></li><li><a href="https://app.marialachinesiologa.com/cookie.html">Cookie</a></li><li><a href="https://app.marialachinesiologa.com/termini.html">Termini &amp; Rimborsi</a></li></ul></div>
+    </div>
+    <div class="foot__bar"><span>© 2026 Maria La Chinesiologa</span></div>
+  </div>
+</footer>
+</main>
+</div>
+<div class="route" data-route="chi-sono">
+<nav class="nav scrolled">
+  <div class="wrap flex items-center justify-between">
+    <a class="wordmark" href="#home" aria-label="Maria La Chinesiologa">
+      <img src="{{ 'logo-navy.png' | asset_url }}" alt="Maria La Chinesiologa" />
+    </a>
+    <div class="nav-links">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono" class="active">Chi sono</a>
+      <a href="#booking">Prenota</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-ico nav-ico--account" aria-label="Accedi" title="Accedi"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/></svg></a>
+      <a href="{{ routes.cart_url }}" class="nav-ico nav-cart" aria-label="Carrello" title="Carrello"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h11l-.9 10.2a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9L6.5 8.5z"/><path d="M9.3 8.5V6.8a2.7 2.7 0 0 1 5.4 0v1.7"/></svg><span class="nav-cart__count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span></a>
+      <a href="#booking" class="btn-gold sm">Prenota →</a>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile">
+    <div class="wrap">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-mobile__acc">Accedi al profilo</a>
+    </div>
+  </div>
+</nav>
+
+<main class="pg">
+  <section class="cs-head">
+    <div class="wrap inner">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Chi sono</div>
+        <h1 class="h-display">Ciao, sono<br><span class="it" style="color:var(--accent)">Maria</span>.</h1>
+      </div>
+      <p class="lead">Chinesiologa, laureata in Scienze Motorie. Accompagno le donne in un percorso di movimento consapevole, dolce e personalizzato — con un approccio empatico, nato anche dalla mia esperienza personale.</p>
+    </div>
+  </section>
+
+  <section class="cs-portrait">
+    <div class="wrap">
+      <div class="frame">
+        <div class="ph" data-label="ritratto editoriale — Maria" data-tone="accent"></div>
+        <div class="cap">
+          <div class="q">"Il movimento è linguaggio."</div>
+          <div class="src">Ritratto · Torino</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cs-bio">
+    <div class="wrap inner">
+      <div>
+        <div class="mono">— Il mio approccio</div>
+        <h2 class="h-1">Ascolto, scienza,<br><span class="it">cura</span>.</h2>
+      </div>
+      <div class="body">
+        <p>Vivo <em>in prima persona</em> il lipedema: è la condizione che mi ha spinta a dedicare la mia carriera ad accompagnare le donne in un percorso di movimento consapevole, dolce e personalizzato.</p>
+        <p>Il mio obiettivo non è solo il miglioramento fisico, ma il recupero di un <em>rapporto positivo</em> con il proprio corpo — partendo dal rispetto, dall'ascolto e dalla cura.</p>
+        <p>Lavoro a Padova, Bologna, Milano e Torino, e online con persone in tutta Italia.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cs-cred">
+    <div class="wrap">
+      <div class="head"><h2 class="h-1">Formazione.</h2><div class="mono">02 — Studio</div></div>
+      <div class="grid">
+        <div class="row reveal"><div class="yr">2013</div><div><h3>Laurea Triennale · Scienze Motorie</h3><div class="sub">Università degli Studi di Padova · 30/11/2013</div></div></div>
+        <div class="row reveal"><div class="yr">2015</div><div><h3>Laurea Magistrale · Scienze Motorie</h3><div class="sub">Alma Mater Studiorum · Università di Bologna · 23/10/2015</div></div></div>
+        <div class="row reveal"><div class="yr">oggi</div><div><h3>Chinesiologa</h3><div class="sub">Attività professionale dal 2013 · focus sul lipedema</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cs-contact">
+    <div class="wrap">
+      <div class="mono">— Scrivimi</div>
+      <h2 class="h-display">Parliamone<br><span class="it">insieme</span>.</h2>
+      <div class="btns">
+        <a href="#booking" class="btn-gold">Prenota la valutazione →</a>
+      </div>
+      <div class="social"><span>Instagram</span><span>·</span><span>YouTube</span><span>·</span><span>TikTok</span><span>·</span><span>App MLC</span></div>
+    </div>
+  </section>
+
+  <footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <span class="wordmark"><img src="{{ 'logo-white.png' | asset_url }}" alt="Maria La Chinesiologa" style="height:60px;width:auto" /></span>
+        <p>Valutazioni funzionali e piani di allenamento personalizzati. Padova, Bologna, Milano, Torino + online.</p>
+      </div>
+      <div class="foot__col"><div class="mono">Servizi</div><ul><li><a href="#booking">Valutazione Funzionale</a></li><li><a href="#piani">Piani di Allenamento</a></li><li><a href="#ebook">eBook</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Studio</div><ul><li><a href="#chi-sono">Chi sono</a></li><li><a href="#servizi">Metodo</a></li><li><a href="https://app.marialachinesiologa.com/faq.html">FAQ</a></li><li><a href="https://app.marialachinesiologa.com/contatti.html">Contatti</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Legale</div><ul><li><a href="https://app.marialachinesiologa.com/privacy.html">Privacy</a></li><li><a href="https://app.marialachinesiologa.com/cookie.html">Cookie</a></li><li><a href="https://app.marialachinesiologa.com/termini.html">Termini &amp; Rimborsi</a></li></ul></div>
+    </div>
+    <div class="foot__bar"><span>© 2026 Maria La Chinesiologa</span></div>
+  </div>
+</footer>
+</main>
+</div>
+<div class="route" data-route="booking">
+<nav class="nav scrolled">
+  <div class="wrap flex items-center justify-between">
+    <a class="wordmark" href="#home" aria-label="Maria La Chinesiologa">
+      <img src="{{ 'logo-navy.png' | asset_url }}" alt="Maria La Chinesiologa" />
+    </a>
+    <div class="nav-links">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking" class="active">Prenota</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-ico nav-ico--account" aria-label="Accedi" title="Accedi"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/></svg></a>
+      <a href="{{ routes.cart_url }}" class="nav-ico nav-cart" aria-label="Carrello" title="Carrello"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h11l-.9 10.2a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9L6.5 8.5z"/><path d="M9.3 8.5V6.8a2.7 2.7 0 0 1 5.4 0v1.7"/></svg><span class="nav-cart__count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span></a>
+      <a href="#booking" class="btn-gold sm">Prenota →</a>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile">
+    <div class="wrap">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-mobile__acc">Accedi al profilo</a>
+    </div>
+  </div>
+</nav>
+
+<main class="bk">
+  <section>
+    <div class="wrap bk__inner">
+      <aside class="bk__rail">
+        <div class="eyebrow"><span class="dot"></span>Valutazione funzionale</div>
+        <h1 class="h-1">Prenota la<br><span class="it" style="color:var(--accent)">tua sessione</span>.</h1>
+        <p class="intro">Online 60 min · in studio 45 min — €80. Pagamento sicuro.</p>
+        <ol class="bk__steps" id="bkSteps">
+          <li data-i="0"><span class="num">01</span><span class="lbl">Modalità</span></li>
+          <li data-i="1"><span class="num">02</span><span class="lbl">Dove</span></li>
+          <li data-i="2"><span class="num">03</span><span class="lbl">Quando</span></li>
+          <li data-i="3"><span class="num">04</span><span class="lbl">Tu</span></li>
+          <li data-i="4"><span class="num">05</span><span class="lbl">Conferma</span></li>
+        </ol>
+      </aside>
+      <div class="bk__panel" id="bkPanel"></div>
+    </div>
+  </section>
+
+  <footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <span class="wordmark"><img src="{{ 'logo-white.png' | asset_url }}" alt="Maria La Chinesiologa" style="height:60px;width:auto" /></span>
+        <p>Valutazioni funzionali e piani di allenamento personalizzati. Padova, Bologna, Milano, Torino + online.</p>
+      </div>
+      <div class="foot__col"><div class="mono">Servizi</div><ul><li><a href="#booking">Valutazione Funzionale</a></li><li><a href="#piani">Piani di Allenamento</a></li><li><a href="#ebook">eBook</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Studio</div><ul><li><a href="#chi-sono">Chi sono</a></li><li><a href="#servizi">Metodo</a></li><li><a href="https://app.marialachinesiologa.com/faq.html">FAQ</a></li><li><a href="https://app.marialachinesiologa.com/contatti.html">Contatti</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Legale</div><ul><li><a href="https://app.marialachinesiologa.com/privacy.html">Privacy</a></li><li><a href="https://app.marialachinesiologa.com/cookie.html">Cookie</a></li><li><a href="https://app.marialachinesiologa.com/termini.html">Termini &amp; Rimborsi</a></li></ul></div>
+    </div>
+    <div class="foot__bar"><span>© 2026 Maria La Chinesiologa</span></div>
+  </div>
+</footer>
+</main>
+</div>
+<div class="route" data-route="checkout">
+<nav class="nav scrolled">
+  <div class="wrap flex items-center justify-between">
+    <a class="wordmark" href="#home" aria-label="Maria La Chinesiologa">
+      <img src="{{ 'logo-navy.png' | asset_url }}" alt="Maria La Chinesiologa" />
+    </a>
+    <div class="nav-links">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking" class="active">Prenota</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-ico nav-ico--account" aria-label="Accedi" title="Accedi"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/></svg></a>
+      <a href="{{ routes.cart_url }}" class="nav-ico nav-cart" aria-label="Carrello" title="Carrello"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h11l-.9 10.2a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9L6.5 8.5z"/><path d="M9.3 8.5V6.8a2.7 2.7 0 0 1 5.4 0v1.7"/></svg><span class="nav-cart__count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span></a>
+      <a href="#booking" class="btn-gold sm">Prenota →</a>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile">
+    <div class="wrap">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-mobile__acc">Accedi al profilo</a>
+    </div>
+  </div>
+</nav>
+
+<main class="co">
+  <section>
+    <div class="wrap co__inner">
+      <!-- form -->
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Checkout sicuro</div>
+        <h1 class="h-1">Conferma e <span class="it" style="color:var(--accent)">paga</span>.</h1>
+        <form id="coForm">
+          <fieldset>
+            <legend>01 — Contatto</legend>
+            <div class="co__grid">
+              <label class="co__field full"><span>Email</span><input type="email" data-b="email" placeholder="tu@email.it"></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>02 — Metodo di pagamento</legend>
+            <div class="co__grid">
+              <div class="co__methods" id="coMethods">
+                <button type="button" class="pay-method sel" data-m="card"><b>Carta</b><span class="ic">CARD</span></button>
+                <button type="button" class="pay-method" data-m="paypal"><b>PayPal</b><span class="ic">PP</span></button>
+                <button type="button" class="pay-method" data-m="bonifico"><b>Bonifico</b><span class="ic">SEPA</span></button>
+              </div>
+              <div class="co__panel" id="coPanel"></div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>03 — Fatturazione</legend>
+            <div class="co__grid">
+              <label class="co__field full"><span>Via e numero civico</span><input type="text" data-b="street" placeholder="Via Roma 10"></label>
+              <label class="co__field"><span>Città</span><input type="text" data-b="city" placeholder="Torino"></label>
+              <label class="co__field"><span>CAP</span><input type="text" data-b="cap" placeholder="10100"></label>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="btn btn-accent co__pay" id="coPay" disabled>Paga €80 <span class="arrow">→</span></button>
+          <div class="co__lock">🔒 Pagamento crittografato. Non memorizziamo i dati della carta.</div>
+        </form>
+      </div>
+
+      <!-- summary -->
+      <aside class="co__aside">
+        <div class="co__summary">
+          <div class="cc" id="ccPreview">
+            <div class="cc__top"><div class="cc__brand">MLC · CARD</div><img class="cc__logo" src="{{ 'mark-navy.png' | asset_url }}" alt=""></div>
+            <div class="cc__num" id="ccNum">•••• •••• •••• ••••</div>
+            <div class="cc__bot">
+              <div><div class="cc__lbl">Intestatario</div><div class="cc__val" id="ccName">NOME COGNOME</div></div>
+              <div><div class="cc__lbl">Scad.</div><div class="cc__val" id="ccExp">MM/AA</div></div>
+            </div>
+          </div>
+          <div class="co__sum-body">
+            <div class="ttl">Riepilogo ordine</div>
+            <h3 id="coLabel">Valutazione Funzionale</h3>
+            <div class="co__sum-meta" id="coSumMeta"></div>
+            <div class="co__sum-rows">
+              <div class="r"><span>Subtotale</span><span id="coSub">€80</span></div>
+              <div class="r"><span>IVA</span><span>Inclusa</span></div>
+              <div class="tot"><span class="mono">Totale</span><span class="big" id="coTot">€80</span></div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <span class="wordmark"><img src="{{ 'logo-white.png' | asset_url }}" alt="Maria La Chinesiologa" style="height:60px;width:auto" /></span>
+        <p>Valutazioni funzionali e piani di allenamento personalizzati. Padova, Bologna, Milano, Torino + online.</p>
+      </div>
+      <div class="foot__col"><div class="mono">Servizi</div><ul><li><a href="#booking">Valutazione Funzionale</a></li><li><a href="#piani">Piani di Allenamento</a></li><li><a href="#ebook">eBook</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Studio</div><ul><li><a href="#chi-sono">Chi sono</a></li><li><a href="#servizi">Metodo</a></li><li><a href="https://app.marialachinesiologa.com/faq.html">FAQ</a></li><li><a href="https://app.marialachinesiologa.com/contatti.html">Contatti</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Legale</div><ul><li><a href="https://app.marialachinesiologa.com/privacy.html">Privacy</a></li><li><a href="https://app.marialachinesiologa.com/cookie.html">Cookie</a></li><li><a href="https://app.marialachinesiologa.com/termini.html">Termini &amp; Rimborsi</a></li></ul></div>
+    </div>
+    <div class="foot__bar"><span>© 2026 Maria La Chinesiologa</span></div>
+  </div>
+</footer>
+</main>
+</div>
+<div class="route" data-route="conferma">
+<nav class="nav scrolled">
+  <div class="wrap flex items-center justify-between">
+    <a class="wordmark" href="#home" aria-label="Maria La Chinesiologa">
+      <img src="{{ 'logo-navy.png' | asset_url }}" alt="Maria La Chinesiologa" />
+    </a>
+    <div class="nav-links">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-ico nav-ico--account" aria-label="Accedi" title="Accedi"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/></svg></a>
+      <a href="{{ routes.cart_url }}" class="nav-ico nav-cart" aria-label="Carrello" title="Carrello"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h11l-.9 10.2a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9L6.5 8.5z"/><path d="M9.3 8.5V6.8a2.7 2.7 0 0 1 5.4 0v1.7"/></svg><span class="nav-cart__count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span></a>
+      <a href="#booking" class="btn-gold sm">Prenota →</a>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile">
+    <div class="wrap">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-mobile__acc">Accedi al profilo</a>
+    </div>
+  </div>
+</nav>
+
+<main class="cf">
+  <!-- SUCCESS HERO -->
+  <section class="cf-hero">
+    <div class="cf-confetti" id="cfConfetti"></div>
+    <div class="wrap" style="position:relative">
+      <div class="cf-tick">
+        <svg width="44" height="44" viewBox="0 0 44 44"><polyline points="10,23 18,32 34,14" fill="none" stroke="var(--navy)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </div>
+      <div class="grazie script">grazie!</div>
+      <h1 class="h-display">È fatta.<br><span class="it">Ci vediamo presto</span>.</h1>
+      <p>Ti ho inviato una email di conferma all'indirizzo <strong id="cfEmail">tu@email.it</strong>. Salva la data — non vedo l'ora di conoscerti.</p>
+      <div class="ord" id="cfOrderId">Ordine #MLC-XXXXXX</div>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section class="section">
+    <div class="wrap cf-details">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Dettagli ordine</div>
+        <h2 class="h-2">Riepilogo della <span class="it">prenotazione</span>.</h2>
+        <div class="cf-card" id="cfDetails"></div>
+        <div class="cf-actions">
+          <button class="btn btn-ghost" onclick="window.print()">Scarica ricevuta</button>
+          <a class="btn btn-ghost" href="#home">Torna alla home</a>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Cosa succede ora</div>
+        <h2 class="h-2">Prossimi <span class="it">passi</span>.</h2>
+        <ol class="cf-steps">
+          <li><div class="n">01</div><div><h3>Email di conferma</h3><p>Tra pochi minuti riceverai una mail con i dettagli e il link per la videochiamata (se online).</p></div></li>
+          <li><div class="n">02</div><div><h3>Questionario pre-sessione</h3><p>24h prima della valutazione ti invio un breve form per prepararci al meglio.</p></div></li>
+          <li><div class="n">03</div><div><h3>Ci incontriamo</h3><p>Sessione di 45–60 minuti. Entro 48h ricevi il report scritto.</p></div></li>
+          <li><div class="n">04</div><div><h3>Continua il percorso</h3><p>Se vuoi, definiamo un piano di allenamento personalizzato.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- BONUS −€80 -->
+  <section class="section cf-bonus">
+    <div class="wrap">
+      <div class="cf-bonus__card">
+        <div class="script">il tuo bonus</div>
+        <h2 class="h-2"><span class="it">−€80</span> sul tuo primo pacchetto.</h2>
+        <p>Hai fatto il primo passo: con la valutazione ottieni <strong>80€ di sconto</strong> su un piano di allenamento. Trovi il codice nella mail di conferma e nella tua area personale.</p>
+        <a href="#piani" class="btn-gold">Scopri i piani →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOFT CTA -->
+  <section class="section cf-soft">
+    <div class="wrap">
+      <div class="script">nel frattempo</div>
+      <h2 class="h-1">Scopri gli <span class="it">eBook</span>.</h2>
+      <p>Mentre aspetti la nostra sessione, dai un'occhiata alle mie guide: brevi, pratiche, da leggere in un pomeriggio.</p>
+      <a class="btn-gold" href="#piani">Esplora gli eBook →</a>
+    </div>
+  </section>
+
+  <footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <span class="wordmark"><img src="{{ 'logo-white.png' | asset_url }}" alt="Maria La Chinesiologa" style="height:60px;width:auto" /></span>
+        <p>Valutazioni funzionali e piani di allenamento personalizzati. Padova, Bologna, Milano, Torino + online.</p>
+      </div>
+      <div class="foot__col"><div class="mono">Servizi</div><ul><li><a href="#booking">Valutazione Funzionale</a></li><li><a href="#piani">Piani di Allenamento</a></li><li><a href="#ebook">eBook</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Studio</div><ul><li><a href="#chi-sono">Chi sono</a></li><li><a href="#servizi">Metodo</a></li><li><a href="https://app.marialachinesiologa.com/faq.html">FAQ</a></li><li><a href="https://app.marialachinesiologa.com/contatti.html">Contatti</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Legale</div><ul><li><a href="https://app.marialachinesiologa.com/privacy.html">Privacy</a></li><li><a href="https://app.marialachinesiologa.com/cookie.html">Cookie</a></li><li><a href="https://app.marialachinesiologa.com/termini.html">Termini &amp; Rimborsi</a></li></ul></div>
+    </div>
+    <div class="foot__bar"><span>© 2026 Maria La Chinesiologa</span></div>
+  </div>
+</footer>
+</main>
+</div>
+<div class="route" data-route="ebook">
+<nav class="nav scrolled">
+  <div class="wrap flex items-center justify-between">
+    <a class="wordmark" href="#home" aria-label="Maria La Chinesiologa">
+      <img src="{{ 'logo-navy.png' | asset_url }}" alt="Maria La Chinesiologa" />
+    </a>
+    <div class="nav-links">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook" class="active">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+    </div>
+    <div class="nav-right">
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-ico nav-ico--account" aria-label="Accedi" title="Accedi"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/></svg></a>
+      <a href="{{ routes.cart_url }}" class="nav-ico nav-cart" aria-label="Carrello" title="Carrello"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8.5h11l-.9 10.2a1 1 0 0 1-1 .9H8.4a1 1 0 0 1-1-.9L6.5 8.5z"/><path d="M9.3 8.5V6.8a2.7 2.7 0 0 1 5.4 0v1.7"/></svg><span class="nav-cart__count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span></a>
+      <a href="#booking" class="btn-gold sm">Prenota →</a>
+      <button class="nav-burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <div class="nav-mobile">
+    <div class="wrap">
+      <a href="#servizi">Servizi</a>
+      <a href="#piani">Piani</a>
+      <a href="#ebook">eBook</a>
+      <a href="#chi-sono">Chi sono</a>
+      <a href="#booking">Prenota</a>
+      <a href="https://app.marialachinesiologa.com/api/auth/shopify/start" class="nav-mobile__acc">Accedi al profilo</a>
+    </div>
+  </div>
+</nav>
+
+<main class="ebk-main">
+
+  <!-- ───── Hero ───── -->
+  <section class="ebk-hero">
+    <img class="ebk-hero__g1" src="{{ 'g03.svg' | asset_url }}" alt="" />
+    <img class="ebk-hero__g2" src="{{ 'g04.svg' | asset_url }}" alt="" />
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot"></span>Biblioteca</div>
+      <h1 class="h-display ebk-hero__h">Buoni, sani,<br><span class="it">consapevoli</span>.</h1>
+      <p class="lead" style="max-width:52ch">Guide di cucina e nutrizione pensate per il lipedema, ma buone per chiunque. Ingredienti funzionali, basso indice glicemico, gusto vero. Da scaricare e usare subito.</p>
+    </div>
+  </section>
+
+  <!-- ───── Featured eBook (interactive) ───── -->
+  <section id="featured-anchor" class="ebk-featured">
+    <div class="wrap ebk-featured__grid" id="ebkFeatured"><!-- rendered by ebook.js --></div>
+  </section>
+
+  <!-- ───── Library ───── -->
+  <section class="section ebk-lib">
+    <div class="wrap">
+      <div class="ebk-lib__head">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>02 — Tutti gli eBook</div>
+          <h2 class="h-1">La <span class="it">biblioteca</span>.</h2>
+        </div>
+        <p class="ebk-lib__note serif it">Clicca un titolo per scoprirlo nel dettaglio.</p>
+      </div>
+      <div class="ebk-cards" id="ebkCards"><!-- rendered by ebook.js --></div>
+    </div>
+  </section>
+
+  <!-- ───── Reader testimonials ───── -->
+  <section class="section ebk-tst">
+    <div class="wrap">
+      <div class="ebk-tst__head">
+        <h2 class="h-1">Chi li ha <span class="it">letti</span>.</h2>
+        <div class="mono">03 — Lettori</div>
+      </div>
+      <div class="ebk-tst__grid">
+        <article class="ebk-tcard reveal">
+          <p class="serif">"Finalmente dolci che non mi fanno sentire in colpa. Le torte gelato sono diventate un rito."</p>
+          <div class="ebk-tcard__meta mono"><span>Anna T.</span><span class="book">Freschi Amici</span></div>
+        </article>
+        <article class="ebk-tcard reveal" style="transition-delay:100ms">
+          <p class="serif">"Le colazioni salate mi hanno salvato l'inverno. Mangio meglio e con più gusto."</p>
+          <div class="ebk-tcard__meta mono"><span>Sara M.</span><span class="book">Colazioni Low Carb</span></div>
+        </article>
+        <article class="ebk-tcard reveal" style="transition-delay:200ms">
+          <p class="serif">"Un percorso semplice da seguire. Caldo, sostenibile, senza rinunce."</p>
+          <div class="ebk-tcard__meta mono"><span>Giulia R.</span><span class="book">Low Carb Winter</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── Bundle CTA ───── -->
+  <section class="section ebk-bundle">
+    <div class="wrap ebk-bundle__grid">
+      <div class="ebk-bundle__copy">
+        <div class="eyebrow"><span class="dot"></span>Pack Winter Edition</div>
+        <h2 class="h-1">I due Winter,<br><span class="it">insieme</span>.</h2>
+        <p class="ebk-bundle__lead serif">Colazioni Low Carb + Low Carb Winter Edition in un solo pacchetto. Tutto l'inverno con gusto ed equilibrio — e risparmi €7,30.</p>
+        <div class="ebk-bundle__price">
+          <span class="big serif">€22,50</span>
+          <span class="old serif">€29,80</span>
+          <span class="mono">—25%</span>
+        </div>
+        <button class="btn-gold ebuy" data-label="Pack eBook Winter Edition" data-price="22.50">Acquista il pacchetto · €22,50 →</button>
+      </div>
+      <div class="ebk-stack">
+        <div class="ebk-stack__card ebk-stack__card--real" style="left:0;top:0;transform:rotate(-5deg);z-index:1;box-shadow:0 30px 60px -18px rgba(0,0,0,.5)">
+          <img class="ebk-stack__img" data-cover="colazioni.jpg" alt="Colazioni Low Carb" />
+        </div>
+        <div class="ebk-stack__card ebk-stack__card--real" style="left:24%;top:13%;transform:rotate(4deg);z-index:2;box-shadow:0 52px 100px -24px rgba(0,0,0,.6)">
+          <img class="ebk-stack__img" data-cover="lowcarb.jpg" alt="Low Carb Winter" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <span class="wordmark"><img src="{{ 'logo-white.png' | asset_url }}" alt="Maria La Chinesiologa" style="height:60px;width:auto" /></span>
+        <p>Valutazioni funzionali e piani di allenamento personalizzati. Padova, Bologna, Milano, Torino + online.</p>
+      </div>
+      <div class="foot__col"><div class="mono">Servizi</div><ul><li><a href="#booking">Valutazione Funzionale</a></li><li><a href="#piani">Piani di Allenamento</a></li><li><a href="#ebook">eBook</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Studio</div><ul><li><a href="#chi-sono">Chi sono</a></li><li><a href="#servizi">Metodo</a></li><li><a href="https://app.marialachinesiologa.com/faq.html">FAQ</a></li><li><a href="https://app.marialachinesiologa.com/contatti.html">Contatti</a></li></ul></div>
+      <div class="foot__col"><div class="mono">Legale</div><ul><li><a href="https://app.marialachinesiologa.com/privacy.html">Privacy</a></li><li><a href="https://app.marialachinesiologa.com/cookie.html">Cookie</a></li><li><a href="https://app.marialachinesiologa.com/termini.html">Termini &amp; Rimborsi</a></li></ul></div>
+    </div>
+    <div class="foot__bar"><span>© 2026 Maria La Chinesiologa</span></div>
+  </div>
+</footer>
+</main>
+</div>
+{{ 'pages.js' | asset_url | script_tag }}
+{{ 'booking.js' | asset_url | script_tag }}
+{{ 'conferma.js' | asset_url | script_tag }}
+<script>window.MLC_ASSETS={"lowcarbbase.jpg":"{{ 'lowcarbbase.jpg' | asset_url }}","colazioni.jpg":"{{ 'colazioni.jpg' | asset_url }}","lowcarb.jpg":"{{ 'lowcarb.jpg' | asset_url }}","freschi.jpg":"{{ 'freschi.jpg' | asset_url }}","g14.svg":"{{ 'g14.svg' | asset_url }}","g12.svg":"{{ 'g12.svg' | asset_url }}","g15.svg":"{{ 'g15.svg' | asset_url }}"};</script>
+{%- comment -%} eBook gestiti da Shopify: la lista arriva dalla collezione "eBook" (handle: ebook). Il pacchetto/Pack è escluso (ha la sua sezione dedicata). {%- endcomment -%}
+<script>
+window.MLC_EBOOKS = [
+{%- for product in collections.ebook.products -%}
+{%- unless product.title contains 'Pack' or product.title contains 'PACK' or product.title contains 'pacchetto' -%}
+{
+"t": {{ product.title | json }},
+"price": {{ product.price | divided_by: 100.0 }},
+{%- if product.compare_at_price > product.price -%}"old": {{ product.compare_at_price | divided_by: 100.0 }},{%- endif -%}
+"realCover": {{ product.featured_image | image_url: width: 900 | json }},
+"sub": {{ product.description | strip_html | truncate: 70 | json }},
+"tag": {{ product.type | default: 'eBook' | json }},
+"descHtml": {{ product.description | json }},
+"url": {{ product.url | json }}
+},
+{%- endunless -%}
+{%- endfor -%}
+];
+</script>
+{{ 'ebook.js' | asset_url | script_tag }}
+{{ 'nav.js' | asset_url | script_tag }}
+{{ 'cities-hydrate.js' | asset_url | script_tag }}
+{{ 'citta-request.js' | asset_url | script_tag }}
+<script>
+(function(){
+  function show(name){
+    var ok=false;
+    document.querySelectorAll('.route').forEach(function(r){var on=r.getAttribute('data-route')===name;r.classList.toggle('active',on);if(on)ok=true;});
+    if(!ok){var h=document.querySelector('.route[data-route="home"]');if(h){h.classList.add('active');}name='home';}
+    window.scrollTo(0,0);
+    document.querySelectorAll('.route.active .reveal').forEach(function(el){el.classList.add('in');});
+  }
+  function cur(){return ((location.hash||'#home').replace('#','').split('?')[0])||'home';}
+  window.addEventListener('hashchange',function(){show(cur());});
+  show(cur());
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Maria — Sito",
+  "settings": [
+    { "type": "header", "content": "Hero (sezione iniziale)" },
+    { "type": "text", "id": "hero_greet", "label": "Saluto (scritto a mano)", "default": "ciao, sono Maria —" },
+    { "type": "richtext", "id": "hero_sub", "label": "Sottotitolo", "default": "<p>Per chi non vuole un programma generico — ma <span class=\"hl\">il suo</span>.</p>" },
+    { "type": "text", "id": "hero_kicker", "label": "Kicker sopra il CTA", "default": "Iniziamo da qui ↓" },
+    { "type": "text", "id": "hero_cta_text", "label": "Testo pulsante CTA", "default": "Prenota la valutazione funzionale →" },
+    { "type": "url", "id": "hero_cta_link", "label": "Link pulsante CTA", "default": "#booking" },
+    { "type": "text", "id": "hero_cta_note", "label": "Nota sotto il CTA", "default": "60 min online · 45 in studio. Il primo passo per capire da dove partire." },
+
+    { "type": "header", "content": "App — La tua palestra in tasca" },
+    { "type": "text", "id": "app_overline", "label": "Eyebrow (etichetta piccola)", "default": "App" },
+    { "type": "inline_richtext", "id": "app_h2", "label": "Titolo (HTML semplice ok: <br>, <span class=\"it\">parola</span> per corsivo gold)", "default": "La tua palestra<br><span class=\"it\">in tasca</span>." },
+    { "type": "textarea", "id": "app_body", "label": "Descrizione breve", "default": "Quando attivi un piano ricevi l'app dedicata: video degli esercizi, calendario, log dei progressi e contatto diretto con me." },
+    { "type": "text", "id": "app_bullet_1", "label": "Bullet 1", "default": "Video HD per ogni esercizio" },
+    { "type": "text", "id": "app_bullet_2", "label": "Bullet 2", "default": "Notifiche promemoria personalizzabili" },
+    { "type": "text", "id": "app_bullet_3", "label": "Bullet 3", "default": "Chat diretta con Maria" },
+    { "type": "text", "id": "app_bullet_4", "label": "Bullet 4", "default": "Dashboard progressi settimanali" },
+    { "type": "image_picker", "id": "app_phone1", "label": "Screenshot 1 (telefono grande, dietro)" },
+    { "type": "image_picker", "id": "app_phone2", "label": "Screenshot 2 (telefono piccolo, davanti)" },
+    { "type": "url", "id": "app_appstore_url", "label": "Link App Store", "default": "https://apps.apple.com/it/app/maria-la-chinesiologa/id6739415935" },
+    { "type": "url", "id": "app_playstore_url", "label": "Link Google Play", "default": "https://play.google.com/store/apps/details?id=com.revoo.marialachinesiologa" },
+
+    { "type": "header", "content": "eBook (sezione ricettari)" },
+    { "type": "text", "id": "ebook_overline", "label": "Eyebrow", "default": "03 — eBook" },
+    { "type": "inline_richtext", "id": "ebook_h2", "label": "Titolo (usa <span class=\"it\">parola</span> per il corsivo gold)", "default": "La <span class=\"it\">cucina</span> che ti supporta." },
+    { "type": "textarea", "id": "ebook_body", "label": "Descrizione", "default": "Ricettari pensati per chi vuole stare meglio: low carb, anti-lipedema, colazioni equilibrate. Pratici, testati, scaricabili subito in PDF." },
+    { "type": "text", "id": "ebook_cta_text", "label": "Pulsante in fondo", "default": "Sfoglia tutti gli eBook →" },
+    { "type": "url", "id": "ebook_cta_link", "label": "Link pulsante", "default": "/collections/ebook" },
+    { "type": "paragraph", "content": "💡 Per aggiungere/modificare le card eBook, usa i blocchi sotto. Se non ci sono blocchi, mostra i 4 eBook di default." }
+  ],
+  "blocks": [
+    {
+      "type": "ebook",
+      "name": "eBook",
+      "limit": 12,
+      "settings": [
+        { "type": "image_picker", "id": "cover", "label": "Cover" },
+        { "type": "text", "id": "tag", "label": "Tag (es. Ricettario)" },
+        { "type": "text", "id": "title", "label": "Titolo", "default": "Nome eBook" },
+        { "type": "text", "id": "price", "label": "Prezzo (es. €9,90)" },
+        { "type": "text", "id": "price_was", "label": "Prezzo originale (opzionale, mostrato barrato)" },
+        { "type": "url", "id": "link", "label": "Link al prodotto" }
+      ]
+    }
+  ],
+  "default": {
+    "settings": {}
+  }
+}
+{% endschema %}
